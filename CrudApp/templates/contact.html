@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>{% if contact %}Update Contact{% else %}Add Contact{% endif %} | <a href="/">Back to Home</a></h1>
+
+    <form method="POST" action="{% if contact %}/update/{{ contact.id }}{% else %}/contactForm{% endif %}">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="{{ contact.name }}" ><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="{{ contact.email }}"><br><br>
+
+        <label for="message">Message:</label><br>
+        <textarea name="message" rows="4" cols="50">{{ contact.message }}</textarea><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
+
+
+
+<!--  {% url 'contact' %} -->
